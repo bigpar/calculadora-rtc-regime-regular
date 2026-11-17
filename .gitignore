@@ -25,3 +25,7 @@ replay_pid*
 
 # build
 .mirror-manifest
+
+# BigPar
+target/
+calculadora/
