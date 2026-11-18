@@ -8,6 +8,7 @@ services:
     mem_limit: 1g
     read_only: true
     tmpfs:
-      - /tmp
+      # exec: o driver do SQLite extrai a biblioteca nativa em /tmp e precisa executá-la
+      - /tmp:exec,mode=1777,size=64m
     security_opt:
       - no-new-privileges:true
