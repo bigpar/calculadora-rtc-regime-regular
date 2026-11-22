@@ -3,7 +3,7 @@
 # 2) roda os testes da Receita (se algum quebrar após um "Sync fork", o deploy falha e a versão antiga continua no ar)
 # 3) imagem final só com o JRE, o .jar e o banco (somente leitura)
 
-FROM maven:3.9.11-eclipse-temurin-21 AS build
+FROM maven:3.9.11-eclipse-temurin-25 AS build
 WORKDIR /src
 COPY pom.xml mvnw ./
 COPY .mvn .mvn
@@ -16,7 +16,7 @@ ARG RODAR_TESTES=true
 RUN if [ "$RODAR_TESTES" = "true" ]; then mvn -B -q test; fi \
  && mvn -B -q package -DskipTests
 
-FROM eclipse-temurin:21-jre
+FROM eclipse-temurin:25-jre
 RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/* \
  && useradd -r -u 10001 calc
 WORKDIR /app
